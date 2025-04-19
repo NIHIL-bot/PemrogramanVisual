@@ -180,7 +180,7 @@ public class BarangForm extends javax.swing.JFrame {
                                     .addComponent(btnHapus)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                     .addComponent(btnBatal)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                                     .addComponent(btnKeluar))))))
                 .addContainerGap())
         );
@@ -324,7 +324,7 @@ model.addColumn("Harga Jual");
 
 try {
     String keyword = txtCari.getText(); // pastikan txtCari adalah nama field pencarian
-    String sql = "SELECT * FROM barang WHERE nama_barang LIKE ?";
+    String sql = "SELECT * FROM barang WHERE kode_barang LIKE ?";
     Connection c = koneksi.Koneksi.getKoneksi();
     PreparedStatement p = c.prepareStatement(sql);
     p.setString(1, "%" + keyword + "%");
@@ -340,8 +340,8 @@ try {
         });
     }
     txtTabel.setModel(model);
-} catch (Exception e) {
-    System.out.println("Cari error: " + e);
+}  catch(SQLException | NullPointerException e){
+    JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
 }
     }//GEN-LAST:event_btnCariActionPerformed
 
